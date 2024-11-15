@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 import org.hibernate.query.Query;
 
-import com.table.Product;
+import com.table.ProductTab;
 
 public class App{
 	public static void  main(String[] arg) {
@@ -42,7 +42,7 @@ public class App{
 		//s.flush();
 		Query q=s.createQuery("from Product");
 		//@SuppressWarnings("unchecked")
-		List<Product> plist=q.getResultList();
+		List<ProductTab> plist=q.getResultList();
 		plist.forEach(System.out::println);
 		Query q1=s.createQuery("select p.id,p.name from Product as p where p.price>1000");
 		//if we select multiple columns it will return a object array for each row
@@ -67,14 +67,14 @@ public class App{
 		Query query=s.createQuery("from Product");
 		query.setMaxResults(3);
 		query.setFirstResult(1);
-		List<Product> l=query.list();
+		List<ProductTab> l=query.list();
 		l.forEach(System.out::println);
 		
 		System.out.println("\n \n \n \n");
 		System.out.println("using criteria");
 		//criteria hepls to selecting without a query
 		
-		Criteria cr=s.createCriteria(Product.class);
+		Criteria cr=s.createCriteria(ProductTab.class);
 		SimpleExpression si=Restrictions.ge("price",800);
 		SimpleExpression si1=Restrictions.gt("quant", 10);
 		LogicalExpression le=Restrictions.or(si, si1);
@@ -84,7 +84,7 @@ public class App{
 		cr.addOrder(Order.asc("quant"));
 		cr.add(le);
 		
-		List<Product> list=cr.list();
+		List<ProductTab> list=cr.list();
 		list.forEach(System.out::println);
 				
 		Query q9=s.createQuery("select p.price from products as p where p,id="+1);

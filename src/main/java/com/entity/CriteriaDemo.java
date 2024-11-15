@@ -17,7 +17,7 @@ import org.hibernate.criterion.PropertyProjection;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 
-import com.table.Product;
+import com.table.ProductTab;
 
 public class CriteriaDemo {
 	public static void main(String[] arg) {
@@ -29,7 +29,7 @@ public class CriteriaDemo {
 		Session s=sf.openSession();
 		Transaction t=s.beginTransaction();
 		Query q=s.createQuery("from Product");
-		List<Product> l=q.list();
+		List<ProductTab> l=q.list();
 		l.forEach(System.out::println);
 		//if we select all it will return Object of product class
 		//if we select only particular colums it will return an object Array
@@ -46,8 +46,8 @@ public class CriteriaDemo {
 		//criteria is used as alternative for sql/hql
 		
 		
-		Criteria cr=s.createCriteria(Product.class);
-		List<Product> l_c=cr.list(); //it will is used as select *
+		Criteria cr=s.createCriteria(ProductTab.class);
+		List<ProductTab> l_c=cr.list(); //it will is used as select *
 		l_c.forEach(System.out::println);
 		//for where condition there is a class called Restrictions
 		SimpleExpression sim1=Restrictions.ge("price", 1000);
@@ -55,14 +55,14 @@ public class CriteriaDemo {
 		//cr.add(sim);
 		//if we want to add one more condition add another simple expression using restrictions
 		// with the help of logical expresssion
-		Criteria cr1=s.createCriteria(Product.class);
+		Criteria cr1=s.createCriteria(ProductTab.class);
 		List<String> st=Arrays.asList("lofers","sneakers","slipons");
 		SimpleExpression sim2=Restrictions.ge("quant", 5);
 		LogicalExpression le=Restrictions.and(sim1, sim2);
 		//for logical and 
 		cr1.add(le);
 		cr1.addOrder(Order.asc("quant"));
-		List<Product> l_cr=cr1.list();
+		List<ProductTab> l_cr=cr1.list();
 		l_cr.forEach(System.out::println);
 		
 		//projections selecting particular  columns 

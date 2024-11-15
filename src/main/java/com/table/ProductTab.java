@@ -6,21 +6,21 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="product_table")
-public class Product {
+public class ProductTab {
 	
 	@Id
 	private int id;
 	private String name;
 	private int price;
 	private int quant;
-	public Product(int id, String name, int price, int quant) {
+	public ProductTab(int id, String name, int price, int quant) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quant = quant;
 	}
-	public Product(){
+	public ProductTab(){
 		
 	}
 	public int getId() {
